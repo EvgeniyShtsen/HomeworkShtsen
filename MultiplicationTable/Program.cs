@@ -15,7 +15,7 @@
             Console.WriteLine($"{number} * {i} = {number * i}");
         }
     }
-    static void ChoiseTable(int choice, int number)
+    static void Operations(int choice, int number)
     {
         switch (choice)
         {
@@ -37,12 +37,9 @@
                     Console.WriteLine("Please, enter a positive integer multiplier and try again");
                 }
                 break;
-            default:
-                Console.WriteLine("Please, make the correct choice and try again");
-                break;
         }
     }
-    static void Main(string[] args)
+    static int EnterNumber()
     {
         Console.WriteLine("Hello! Please, enter the number:");
         var number = 0;
@@ -50,23 +47,55 @@
         if (isNumber)
         {
             Console.WriteLine($"You entered a number: {number}");
-            Console.WriteLine("What multiplication table do you want to use? \n 1.Clasic \n 2.Castom, with multiplier");
+            return number;
         }
         else
         {
             Console.WriteLine("Please, enter an integer and try again");
-            return;
         }
+        return number;
+    }
+    static int ChoiceTable()
+    {
+        Console.WriteLine("What multiplication table do you want to use? \n 1.Clasic \n 2.Castom, with multiplier");
         var choice = 0;
         var isChoice = int.TryParse(Console.ReadLine(), out choice);
-        if (isChoice)
+        if (isChoice && choice == 1)
         {
-            ChoiseTable(choice, number);
+            Console.WriteLine("Great, you select a classic math table");
+            return choice;
+        }
+        else if (isChoice && choice == 2) 
+        {
+            Console.WriteLine("Great, you select a castom math table");
+            return choice;
         }
         else
         {
-            Console.WriteLine("Please, enter an integer and try again");
-            return;
+            Console.WriteLine("Please, choose the correct item");
+        }
+        return choice;
+    }
+    static void Main(string[] args)
+    {
+        string ultima = "y";
+        while (ultima == "y")
+        {
+            var number = EnterNumber();
+            if (number != 0)
+            {
+                var choice = ChoiceTable();
+                if (choice != 0)
+                {
+                    Operations(choice, number);
+                }
+            }
+            Console.WriteLine("Do you try again? \n 1) Press 'y' button if YES \n 2) Press anything if NO");
+            ultima = Convert.ToString(Console.ReadLine());
+            if (ultima != "y")
+            {
+                Console.WriteLine("Have a good day!");
+            }
         }
     }
 }
