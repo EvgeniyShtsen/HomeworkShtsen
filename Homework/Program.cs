@@ -30,24 +30,39 @@ namespace Days
                     Console.WriteLine("Sunday");
                     break;
                 default:
-                    Console.WriteLine("Max value: 7");
+                    Console.WriteLine("Enter a value from 1 to 7");
                     break;
             }
 
         }
 
         static void Main(string[] args)
-        {
-            Console.WriteLine("Hello! Please, enter a day number");
-            var number = 0;
-            var isNumber = int.TryParse(Console.ReadLine(), out number);
-            if (isNumber)
+        { 
+            
+             
+            var ultima = ("y");
+            while (ultima == "y")
             {
-                OperationNumber(number);
-            }
-            else
-            {
-                Console.WriteLine("Please, enter an integer and try again");
+                if (ultima == "y")
+                {
+                    Console.WriteLine("Hello! Please, enter a day number (1 to 7)");
+                    var number = 0;
+                    var isNumber = int.TryParse(Console.ReadLine(), out number);
+                    if (isNumber)
+                    {
+                        OperationNumber(number);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please, enter an integer and try again");
+                    }
+                    Console.WriteLine("Do you want to continue? \n 1) Press 'y' if YES \n 2) Press anything if NO");
+                    ultima = Console.ReadLine();
+                    if (ultima != "y")
+                    {
+                        Console.WriteLine("Have a good day!");
+                    }
+                }
             }
         }
     }
